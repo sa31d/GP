@@ -13,10 +13,10 @@ namespace PrintNow.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PrintnowEntities : DbContext
+    public partial class PrintnowEntities1 : DbContext
     {
-        public PrintnowEntities()
-            : base("name=PrintnowEntities")
+        public PrintnowEntities1()
+            : base("name=PrintnowEntities1")
         {
         }
     

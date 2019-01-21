@@ -739,7 +739,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PrintnowEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PrintnowEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="customers" EntityType="Self.customer" />
           <EntitySet Name="Customer_Request_Shipping" EntityType="Self.Customer_Request_Shipping" />
           <EntitySet Name="Materials" EntityType="Self.Material" />
@@ -815,7 +815,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PrintnowModelStoreContainer" CdmEntityContainer="PrintnowEntities">
+        <EntityContainerMapping StorageEntityContainer="PrintnowModelStoreContainer" CdmEntityContainer="PrintnowEntities1">
           <EntitySetMapping Name="customers">
             <EntityTypeMapping TypeName="PrintnowModel.customer">
               <MappingFragment StoreEntitySet="customer">
