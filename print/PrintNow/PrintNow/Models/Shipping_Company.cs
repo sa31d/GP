@@ -32,6 +32,7 @@ namespace PrintNow.Models
         public Nullable<double> extraPricePkg { get; set; }
         public Nullable<double> rate { get; set; }
         public string address { get; set; }
+        public int block { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer_Request_Shipping> Customer_Request_Shipping { get; set; }

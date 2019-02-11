@@ -12,7 +12,7 @@ namespace PrintNow.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PritingCompany_Response
+    public partial class PrintingCompany_Response
     {
         public int printingID { get; set; }
         public int orderID { get; set; }

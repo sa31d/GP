@@ -25,18 +25,18 @@ namespace PrintNow.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<customer> customers { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Customer_Request_Shipping> Customer_Request_Shipping { get; set; }
         public virtual DbSet<Material> Materials { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Printing_Company> Printing_Company { get; set; }
         public virtual DbSet<Printing_Request_Shipping> Printing_Request_Shipping { get; set; }
         public virtual DbSet<PrintingCompany_Request_Material> PrintingCompany_Request_Material { get; set; }
-        public virtual DbSet<PritingCompany_Response> PritingCompany_Response { get; set; }
+        public virtual DbSet<PrintingCompany_Response> PrintingCompany_Response { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Product_Has_Material> Product_Has_Material { get; set; }
         public virtual DbSet<Shipping_Company> Shipping_Company { get; set; }
-        public virtual DbSet<supplier> suppliers { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Supply_Material> Supply_Material { get; set; }
     }
 }
