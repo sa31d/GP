@@ -52,10 +52,20 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
+<<<<<<< HEAD
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+=======
+    </Reference>
+    <Reference Include="Json.Net, Version=1.0.16.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Json.Net.1.0.16\lib\netstandard2.0\Json.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+>>>>>>> 718c73f8928efd7d680ef6e44a0d764309d3f379
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core.4.0.0.0.Fakes">
@@ -115,9 +125,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -176,32 +183,33 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer_Request_Shipping.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataModel.edmx</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Material.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PrintingCompany_Request_Material.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Models\PrintingCompany_Response.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -210,21 +218,31 @@
     </Compile>
     <Compile Include="Models\Printing_Request_Shipping.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
+=======
+    <Compile Include="Models\Printing_Company.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Printing_Request_Shipping.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+>>>>>>> 718c73f8928efd7d680ef6e44a0d764309d3f379
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product_Has_Material.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shipping_Company.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supplier.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supply_Material.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
@@ -236,32 +254,38 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DataModel.Context.tt">
+    <Content Include="Models\NewModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DataModel.edmx</DependentUpon>
       <LastGenOutput>DataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DataModel.tt">
+    <Content Include="Models\NewModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataModel.edmx</DependentUpon>
-      <LastGenOutput>DataModel.cs</LastGenOutput>
+      <DependentUpon>NewModel.edmx</DependentUpon>
+      <LastGenOutput>NewModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+<<<<<<< HEAD
     <Fakes Include="Fakes\System.Core.fakes" />
     <EntityDeploy Include="Models\DataModel.edmx">
+=======
+    <EntityDeploy Include="Models\NewModel.edmx">
+>>>>>>> 718c73f8928efd7d680ef6e44a0d764309d3f379
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>NewModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DataModel.edmx.diagram">
-      <DependentUpon>DataModel.edmx</DependentUpon>
+    <Content Include="Models\NewModel.edmx.diagram">
+      <DependentUpon>NewModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -274,7 +298,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -301,10 +327,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+<<<<<<< HEAD
     <Folder Include="Images\" />
     <Folder Include="Views\PrintingCompany\" />
     <Folder Include="Views\ShippingCompany\" />
     <Folder Include="Views\Supplier\" />
+=======
+    <Folder Include="Views\Product\" />
+>>>>>>> 718c73f8928efd7d680ef6e44a0d764309d3f379
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

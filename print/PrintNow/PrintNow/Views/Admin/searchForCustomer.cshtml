@@ -1,0 +1,25 @@
+﻿@model IEnumerable<PrintNow.Models.Customer>
+
+
+          
+@{ 
+
+
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+<p>
+  
+    @using (Html.BeginForm("searchForCustomer", "Admin", FormMethod.Get))
+    {
+    <p>
+        Genre: @Html.DropDownList("name")
+        Email: @Html.TextBox("Email")
+        <input type="submit" value="Filter" />
+    </p>
+    }
+ </p>
+<hr />
+
+
+  

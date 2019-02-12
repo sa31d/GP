@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "searchForShippingCompany";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>searchForShippingCompany</h2>
+<form>
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("cityLabel", htmlAttributes: new { @class = "label-control col-sm-2" })
+            <div class="col-sm-7">
+                @Html.Editor("city", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <button type="button" class="btn btn-success" id="searchBtn"> Search </button>
+        </div>
+    </div>
+</form>
+<table class="table" id="shippingTable">
+    <thead>
+        <tr>
+            <th>Company Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Location</th>
+            <th>Inside City price per KG</th>
+            <th>Outside City price per KG</th>
+            <th>Extra price per KG</th>
+            <th>Rate</th>
+            <th>Make an Request</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section Scripts{
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(document).ready(function () {
+            $("#shippingTable").hide();
+            $("#searchBtn").click(function () {
+                city = $("#city").val();
+                $.ajax({
+                    type: "get",
+                    url: "/PrintingCompany/shippingOfCity?city=" + city,
+                    success: function (response) {
+                        $("#shippingTable").show();
+                        $("#shippingTable tbody").empty();
+                        $.each(response, function (index, response) {
+                            alert(response.companyName + "" + response.address + "  " + response.email + response.insidePricePkg);
+                            $("#shippingTable tbody").append("<tr><td>" + response.companyName + "</td><td>" + response.email + "</td><td>" + response.phone + "</td><td>" + response.address + " " + response.city + "</td><td>" + response.insidePricePkg + "</td><td>" + response.outsidePricePkg + "</td><td>" + response.extraPricePkg + "</td><td>" + response.rate + "</td><td><button id='requestBtn' value='" + response.shippingID + "' class='btn btn-success' type='button'>Send Request</button></td></tr>");
+                        })
+
+                    }
+                })
+
+            })
+            $("#requestBtn").click(function () {
+                alert("1");
+            })
+        })
+    </script>
+}

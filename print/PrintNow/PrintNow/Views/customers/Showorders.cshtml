@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PrintNow.Models.Order>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.orderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.printingSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.material)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shape)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrowseBook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberPages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CollectionPapers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cover)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.productType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.orderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.printingSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.material)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.shape)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrowseBook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberPages)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CollectionPapers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cover)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.productType)
+        </td>
+        <td>
+           @Html.ActionLink("ShowResponse", "ShowPrinterRespons", new { ordid = item.orderID }) |
+        </td>
+    </tr>
+}
+
+</table>

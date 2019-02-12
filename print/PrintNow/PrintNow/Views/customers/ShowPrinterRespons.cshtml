@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PrintNow.Models.PrintingCompany_Response>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.servicesPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Printing_Company.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.confirm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.servicesPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Printing_Company.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.confirm)
+        </td>
+        <td>
+            @Html.ActionLink("confirm Printing", "confirmPrinting", new {  id=item.orderID,idp=item.printingID }) |
+            
+        </td>
+    </tr>
+}
+
+</table>

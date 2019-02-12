@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PrintNow.Models.Order>
+
+@{
+    ViewBag.Title = "getRequests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>getRequests</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.orderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.printingSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.productType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.orderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.printingSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.productType)
+        </td>
+        <td>
+            @Html.ActionLink("Response", "Response", new { id=item.orderID }) 
+           </td>
+    </tr>
+}
+
+</table>
