@@ -12,10 +12,10 @@ namespace PrintNow.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class customer
+    public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public customer()
+        public Customer()
         {
             this.Orders = new HashSet<Order>();
             this.Customer_Request_Shipping = new HashSet<Customer_Request_Shipping>();
@@ -30,6 +30,7 @@ namespace PrintNow.Models
         public string city { get; set; }
         public string address { get; set; }
         public Nullable<double> rate { get; set; }
+        public int block { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

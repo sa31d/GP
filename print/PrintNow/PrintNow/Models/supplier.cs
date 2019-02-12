@@ -12,10 +12,10 @@ namespace PrintNow.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class supplier
+    public partial class Supplier
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public supplier()
+        public Supplier()
         {
             this.Supply_Material = new HashSet<Supply_Material>();
         }
@@ -28,7 +28,8 @@ namespace PrintNow.Models
         public string city { get; set; }
         public string address { get; set; }
         public byte[] image { get; set; }
-        public Nullable<double> rate { get; set; }
+        public double rate { get; set; }
+        public int block { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Supply_Material> Supply_Material { get; set; }
