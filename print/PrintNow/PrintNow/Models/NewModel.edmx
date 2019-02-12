@@ -164,18 +164,8 @@
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="amount" Type="float" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <Association Name="FK_Customer_Order">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+        <Association Name="FK_Cust_Order">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -356,9 +346,8 @@
           <EntitySet Name="Shipping_Company" EntityType="Self.Shipping_Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supply_Material" EntityType="Self.Supply_Material" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Customer_Order" Association="Self.FK_Customer_Order">
-            <End Role="Customer" EntitySet="Customer" />
+          <AssociationSet Name="FK_Cust_Order" Association="Self.FK_Cust_Order">
+            <End Role="customer" EntitySet="customer" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Customer_ShippingRequest" Association="Self.FK_Customer_ShippingRequest">
@@ -472,15 +461,9 @@
           <Property Name="printingSize" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="custID" Type="Int32" Nullable="false" />
           <Property Name="prodID" Type="Int32" Nullable="false" />
-          <Property Name="material" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="shape" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
-          <Property Name="BrowseBook" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="NumberPages" Type="Int32" />
-          <Property Name="CollectionPapers" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Cover" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Customer_Order" FromRole="Orders" ToRole="Customer" />
-          <NavigationProperty Name="PrintingCompany_Response" Relationship="Self.FK_Order_OrderResponse" FromRole="Orders" ToRole="PrintingCompany_Response" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Order" FromRole="Orders" ToRole="Product" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_Cust_Order" FromRole="Orders" ToRole="customer" />
+          <NavigationProperty Name="PritingCompany_Response" Relationship="Self.FK_Order_OrderResponse" FromRole="Orders" ToRole="PritingCompany_Response" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Prod_Order" FromRole="Orders" ToRole="Product" />
         </EntityType>
         <EntityType Name="Printing_Company">
           <Key>
@@ -534,9 +517,8 @@
           <Property Name="orderID" Type="Int32" Nullable="false" />
           <Property Name="servicesPrice" Type="Double" Nullable="false" />
           <Property Name="price" Type="Double" Nullable="false" />
-          <Property Name="confirm" Type="Int32" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_Order_OrderResponse" FromRole="PrintingCompany_Response" ToRole="Orders" />
-          <NavigationProperty Name="Printing_Company" Relationship="Self.FK_Printing_OrderResponse" FromRole="PrintingCompany_Response" ToRole="Printing_Company" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_OrderResponse" FromRole="PritingCompany_Response" ToRole="Orders" />
+          <NavigationProperty Name="Printing_Company" Relationship="Self.FK_Priting_OrderResponse" FromRole="PritingCompany_Response" ToRole="Printing_Company" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -604,17 +586,7 @@
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="amount" Type="Double" Nullable="false" />
           <NavigationProperty Name="Material" Relationship="Self.FK_Material_SupplyMaterial" FromRole="Supply_Material" ToRole="Material" />
-          <NavigationProperty Name="Supplier" Relationship="Self.FK_Supplier_SupplyMaterial" FromRole="Supply_Material" ToRole="Supplier" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="supplier" Relationship="Self.FK_Supplier_SupplyMaterial" FromRole="Supply_Material" ToRole="supplier" />
         </EntityType>
         <Association Name="FK_Customer_Order">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -784,8 +756,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PrintnowEntities6" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
+        <EntityContainer Name="PrintnowEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customers" EntityType="Self.customer" />
           <EntitySet Name="Customer_Request_Shipping" EntityType="Self.Customer_Request_Shipping" />
           <EntitySet Name="Materials" EntityType="Self.Material" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -798,9 +770,8 @@
           <EntitySet Name="Shipping_Company" EntityType="Self.Shipping_Company" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
           <EntitySet Name="Supply_Material" EntityType="Self.Supply_Material" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <AssociationSet Name="FK_Customer_Order" Association="Self.FK_Customer_Order">
-            <End Role="Customer" EntitySet="Customers" />
+          <AssociationSet Name="FK_Cust_Order" Association="Self.FK_Cust_Order">
+            <End Role="customer" EntitySet="customers" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Customer_ShippingRequest" Association="Self.FK_Customer_ShippingRequest">
@@ -861,10 +832,10 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PrintnowModelStoreContainer" CdmEntityContainer="PrintnowEntities6">
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="PrintnowModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
+        <EntityContainerMapping StorageEntityContainer="PrintnowModelStoreContainer" CdmEntityContainer="PrintnowEntities">
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="PrintnowModel.customer">
+              <MappingFragment StoreEntitySet="customer">
                 <ScalarProperty Name="custID" ColumnName="custID" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -1024,18 +995,6 @@
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="amount" ColumnName="amount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="PrintnowModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
