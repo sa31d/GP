@@ -12,15 +12,12 @@ namespace PrintNow.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer_Request_Shipping
+    public partial class sysdiagram
     {
-        public int CustomerID { get; set; }
-        public int ShippingID { get; set; }
-        public int amount { get; set; }
-        public string shippingType { get; set; }
-        public System.DateTime date { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        public virtual Shipping_Company Shipping_Company { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

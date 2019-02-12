@@ -17,7 +17,7 @@ namespace PrintNow.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.PritingCompany_Response = new HashSet<PritingCompany_Response>();
+            this.PrintingCompany_Response = new HashSet<PrintingCompany_Response>();
         }
     
         public int orderID { get; set; }
@@ -28,10 +28,16 @@ namespace PrintNow.Models
         public string printingSize { get; set; }
         public int custID { get; set; }
         public int prodID { get; set; }
+        public string material { get; set; }
+        public string shape { get; set; }
+        public string BrowseBook { get; set; }
+        public Nullable<int> NumberPages { get; set; }
+        public string CollectionPapers { get; set; }
+        public string Cover { get; set; }
     
-        public virtual customer customer { get; set; }
+        public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PritingCompany_Response> PritingCompany_Response { get; set; }
+        public virtual ICollection<PrintingCompany_Response> PrintingCompany_Response { get; set; }
         public virtual Product Product { get; set; }
     }
 }

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<PrintNow.Models.Product>
+@{
+    ViewBag.Title = "CustomerHome";
+}
+
+<h2>CustomerHome</h2>
+
+<div></div>
+<div></div>
+<div></div>
+ 
+@foreach (var item in Model)
+{
+   
+   //<a href="ProductDetails/@item.productID"  class="btn btn-info">@Html.DisplayFor(modelItem => item.productType)</a>
+   @Html.ActionLink(item.productType, "ProductDetails", new { id = item.productID })
+
+}
+@Html.ActionLink("Showorders", "Showorders");

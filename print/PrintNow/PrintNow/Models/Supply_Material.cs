@@ -17,8 +17,9 @@ namespace PrintNow.Models
         public int MaterialID { get; set; }
         public int SupplierID { get; set; }
         public double Price { get; set; }
+        public double amount { get; set; }
     
         public virtual Material Material { get; set; }
-        public virtual supplier supplier { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 }

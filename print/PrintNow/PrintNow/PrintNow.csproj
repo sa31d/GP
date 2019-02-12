@@ -46,10 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -155,64 +157,71 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\customersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\customer.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer_Request_Shipping.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataModel.edmx</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Material.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PrintingCompany_Request_Material.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrintingCompany_Response.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Printing_Company.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Printing_Request_Shipping.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PritingCompany_Response.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product_Has_Material.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shipping_Company.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\supplier.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+    <Compile Include="Models\Supplier.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Supply_Material.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>NewModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>NewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewModel\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -224,27 +233,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DataModel.Context.tt">
+    <Content Include="Models\NewModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
-      <DependentUpon>DataModel.edmx</DependentUpon>
+      <DependentUpon>NewModel.edmx</DependentUpon>
+      <LastGenOutput>NewModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DataModel.tt">
+    <Content Include="Models\NewModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataModel.edmx</DependentUpon>
-      <LastGenOutput>DataModel.cs</LastGenOutput>
+      <DependentUpon>NewModel.edmx</DependentUpon>
+      <LastGenOutput>NewModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\DataModel.edmx">
+    <EntityDeploy Include="Models\NewModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>NewModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DataModel.edmx.diagram">
-      <DependentUpon>DataModel.edmx</DependentUpon>
+    <Content Include="Models\NewModel.edmx.diagram">
+      <DependentUpon>NewModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -257,7 +266,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -271,6 +282,31 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\customers\Create.cshtml" />
+    <Content Include="Views\customers\Delete.cshtml" />
+    <Content Include="Views\customers\Details.cshtml" />
+    <Content Include="Views\customers\Edit.cshtml" />
+    <Content Include="Views\customers\Index.cshtml" />
+    <Content Include="Views\Admin\searchForUser.cshtml" />
+    <Content Include="Views\Admin\searchForCustomer.cshtml" />
+    <Content Include="Views\Admin\printing.cshtml" />
+    <Content Include="Views\Admin\View.cshtml" />
+    <Content Include="Views\customers\RequstShipping.cshtml" />
+    <Content Include="Views\Admin\shippingmange.cshtml" />
+    <Content Include="Views\Admin\suppliermange.cshtml" />
+    <Content Include="Views\customers\CustomerHome.cshtml" />
+    <Content Include="Views\customers\ProductDetails.cshtml" />
+    <Content Include="Views\customers\RequestProductBook.cshtml" />
+    <Content Include="Views\customers\RequestProductCard.cshtml" />
+    <Content Include="Views\UserAccount\Login.cshtml" />
+    <Content Include="Views\UserAccount\RegisterCustomer.cshtml" />
+    <Content Include="Views\UserAccount\RegisterPrintCompany.cshtml" />
+    <Content Include="Views\UserAccount\RegisterShippCompany.cshtml" />
+    <Content Include="Views\UserAccount\RegisterSuppCompany.cshtml" />
+    <Content Include="Views\customers\ShowPrinterRespons.cshtml" />
+    <Content Include="Views\customers\Showorders.cshtml" />
+    <Content Include="Views\customers\confirmPrinting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

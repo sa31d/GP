@@ -17,9 +17,9 @@ namespace PrintNow.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Printing_Company()
         {
+            this.PrintingCompany_Response = new HashSet<PrintingCompany_Response>();
             this.PrintingCompany_Request_Material = new HashSet<PrintingCompany_Request_Material>();
             this.Printing_Request_Shipping = new HashSet<Printing_Request_Shipping>();
-            this.PritingCompany_Response = new HashSet<PritingCompany_Response>();
         }
     
         public int printingID { get; set; }
@@ -30,13 +30,14 @@ namespace PrintNow.Models
         public string city { get; set; }
         public string address { get; set; }
         public byte[] image { get; set; }
-        public Nullable<double> rate { get; set; }
+        public double rate { get; set; }
+        public int block { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PrintingCompany_Response> PrintingCompany_Response { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PrintingCompany_Request_Material> PrintingCompany_Request_Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Printing_Request_Shipping> Printing_Request_Shipping { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PritingCompany_Response> PritingCompany_Response { get; set; }
     }
 }

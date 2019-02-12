@@ -23,8 +23,8 @@ namespace PrintNow.Models
         }
     
         public int materialID { get; set; }
-        public string materialName { get; set; }
         public string materialType { get; set; }
+        public string materialName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PrintingCompany_Request_Material> PrintingCompany_Request_Material { get; set; }
