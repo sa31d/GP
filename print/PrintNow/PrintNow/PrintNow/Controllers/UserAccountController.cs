@@ -10,7 +10,9 @@ namespace PrintNow.Controllers
 {
     public class UserAccountController : Controller
     {
-        private PrintnowEntities6 db = new PrintnowEntities6();
+
+        private PrintnowEntities2 db = new PrintnowEntities2();
+
 
       
         // GET: UserAccount
@@ -48,6 +50,7 @@ namespace PrintNow.Controllers
             if (ModelState.IsValid)
               {
                 print.block = 0;
+
                /* string fileName = Path.GetFileNameWithoutExtension(print.ImageFile.FileName);
                 string extension = Path.GetExtension(print.ImageFile.FileName);
                 fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
@@ -55,6 +58,7 @@ namespace PrintNow.Controllers
                 fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
                 print.ImageFile.SaveAs(fileName);
                 */
+
                 db.Printing_Company.Add(print);
                  db.SaveChanges();
                     return RedirectToAction("Index");

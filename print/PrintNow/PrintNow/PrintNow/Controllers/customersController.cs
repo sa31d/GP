@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PrintNow.Models;
+using System.IO;
 
 namespace PrintNow.Controllers
 {
     public class customersController : Controller
     {
-        private PrintnowEntities6 db = new PrintnowEntities6();
+        private PrintnowEntities2 db = new PrintnowEntities2();
 
         // GET: customers
         public ActionResult Index()
@@ -169,15 +170,10 @@ namespace PrintNow.Controllers
             return View(detail);
         }
         [HttpGet]
-        public ActionResult RequestProduct( int id,string material)
+        public ActionResult RequestProduct(int id, string material)
         {
-            var m = db.Product_Has_Material.Where(s => s.productID == id).ToList();
-           
             if (id == 1)
             {
-                ViewBag.name = new SelectList(m);
-
-
                 return View("RequestProductBook");
             }
             else if (id == 2)
@@ -188,17 +184,23 @@ namespace PrintNow.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult RequestProduct(Order order,int id, string material)
+        public ActionResult RequestProduct(Order order, int id, string material, HttpPostedFileBase imagefile1)
         {
             Order ord = new Order();
-           // Product pid = db.Products.Find(id);
+            ord.imageFile = imagefile1;
             if (ModelState.IsValid)
             {
-                
-                ord.custID = Convert.ToInt32(Session["custID"]);
+                string fileName = Path.GetFileNameWithoutExtension(ord.imageFile.FileName);
+                string extension = Path.GetExtension(ord.imageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                ord.imagePath = "~/Images/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Images/"), fileName);
 
+                ord.imageFile.SaveAs(fileName);
+
+                ord.custID = Convert.ToInt32(Session["custID"]);
                 ord.prodID = id;
-                ord.material =  material;
+                ord.material = material;
                 ord.printingSize = order.printingSize;
                 ord.quantity = order.quantity;
                 ord.orderDate = DateTime.Now;
@@ -208,13 +210,13 @@ namespace PrintNow.Controllers
                 ord.Cover = order.Cover;
                 ord.note = order.note;
                 ord.shape = order.shape;
-                ord.image = order.image;
                 db.Orders.Add(ord);
                 db.SaveChanges();
-                return RedirectToAction("CustomerHome");
+                return RedirectToAction("Showorders");
 
             }
-                        return View();
+            
+            return View();
         }
         public ActionResult Showorders( )
         {
@@ -232,7 +234,7 @@ namespace PrintNow.Controllers
           PrintingCompany_Response PCR = db.PrintingCompany_Response.SingleOrDefault(s=>s.printingID==idp && s.orderID==id);
             if (PCR != null)
             {
-                PCR.confirm = 1;
+                PCR.confierm = 1;
                 db.SaveChanges();
             }
             return RedirectToAction("Showorders");

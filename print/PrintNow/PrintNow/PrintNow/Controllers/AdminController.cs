@@ -12,7 +12,7 @@ namespace PrintNow.Controllers
 {
     public class AdminController : Controller
     {
-        PrintnowEntities6 db = new PrintnowEntities6();
+        PrintnowEntities2 db = new PrintnowEntities2();
 
         // GET: Admin
         public ActionResult Index()

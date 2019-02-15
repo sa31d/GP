@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Printing_Company.email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.confirm)
+            @Html.DisplayNameFor(model => model.confierm)
         </th>
         <th></th>
     </tr>
@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.Printing_Company.email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.confirm)
+            @Html.DisplayFor(modelItem => item.confierm)
         </td>
         <td>
             @Html.ActionLink("confirm Printing", "confirmPrinting", new {  id=item.orderID,idp=item.printingID }) |

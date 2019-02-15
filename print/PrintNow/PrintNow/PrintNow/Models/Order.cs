@@ -11,7 +11,8 @@ namespace PrintNow.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,8 @@ namespace PrintNow.Models
         public int orderID { get; set; }
         public System.DateTime orderDate { get; set; }
         public int quantity { get; set; }
-        public byte[] image { get; set; }
+        public string imagePath { get; set; }
+        public HttpPostedFileBase imageFile { get; set; }
         public string note { get; set; }
         public string printingSize { get; set; }
         public int custID { get; set; }

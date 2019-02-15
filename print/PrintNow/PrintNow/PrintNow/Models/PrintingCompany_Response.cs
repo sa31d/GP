@@ -18,7 +18,8 @@ namespace PrintNow.Models
         public int orderID { get; set; }
         public double servicesPrice { get; set; }
         public double price { get; set; }
-        public Nullable<int> confirm { get; set; }
+     
+        public Nullable<int> confierm { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Printing_Company Printing_Company { get; set; }

@@ -1,3 +1,4 @@
+﻿
 ﻿using PrintNow.Models;
 using PrintNow.Models.ViewModel;
 using System;
@@ -11,13 +12,14 @@ namespace PrintNow.Controllers
 {
     public class PrintingCompanyController : Controller
     {
+        private PrintnowEntities2 db = new PrintnowEntities2();
 
-        private PrintnowEntities db = new PrintnowEntities();
         // GET: PrintingCompany
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult getRequests()
         {
             var requests = db.Orders.ToList();
@@ -41,6 +43,7 @@ namespace PrintNow.Controllers
 
             if (ModelState.IsValid)
             {
+                response.confierm = 1;
                 db.PrintingCompany_Response.Add(response);
                 db.SaveChanges();
                 return RedirectToAction("getRequests");
@@ -131,5 +134,6 @@ namespace PrintNow.Controllers
             }
             return View(request);
         }
+
     }
 }
