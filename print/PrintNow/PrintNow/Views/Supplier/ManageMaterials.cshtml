@@ -1,0 +1,95 @@
+﻿@model IEnumerable <Gp_project.Models.Supply_Material>
+@{
+    ViewBag.Title = "ManageMaterials";
+}
+@if (Session["email"] != null)
+{
+<h2 style="text-align:center;">Manage Materials</h2>
+<div style="text-align:center;border:solid;border-color:lightskyblue;border-radius:15px;border-top-width:40px;border-bottom-width:20px;border-left-width:10px;border-right-width:10px;">
+
+    <div>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Material.materialName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.amount)
+
+                </th>
+
+
+                <th>Actions</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr id="record_@item.ID">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Material.materialName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount)
+                    </td>
+
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-danger" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-success" }) |
+                        <button type="button" class="btn btn-primary" id="delete" onclick="DeleteMaterial(@item.ID)">Delete</button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    </div>
+}
+else
+{
+    <h1>No Access You Should Login First !</h1>
+}
+    @section Scripts{
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script>
+
+            function DeleteMaterial(id) {
+
+                if (confirm("Are you sure to delete this Material !!")) {
+                    $.ajax({
+
+                        type: "Get",
+                        url: "/Supplier/Delete/" + id,
+                        success: function (response) {
+                            if (response.result == 1) {
+
+                                $("#record_" + id).remove();
+                                swal("Material is Deleted!", "You have Successfully Deleted The Material!", "success");
+                            }
+                            else {
+                                swal("Material is not Deleted!", "You have not Successfully Deleted The Material!", "error");
+                            }
+                        }
+
+                    })
+                }
+            }
+        </script>
+
+
+
+
+    }
+
