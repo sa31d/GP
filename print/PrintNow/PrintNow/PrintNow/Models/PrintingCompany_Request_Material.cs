@@ -7,17 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PrintNow.Models
+namespace Gp_project.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PrintingCompany_Request_Material
     {
+        [Display(Name = "Printing Company Name")]
         public int printingID { get; set; }
+        [Display(Name = "Material Name")]
         public int MaterialID { get; set; }
+        [Display(Name = "Material Amount")]
         public Nullable<int> amount { get; set; }
-        public Nullable<double> price { get; set; }
+        [Display(Name = "Order Date")]
+        public Nullable<System.DateTime> orderDate { get; set; }
     
         public virtual Material Material { get; set; }
         public virtual Printing_Company Printing_Company { get; set; }

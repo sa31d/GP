@@ -7,17 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PrintNow.Models
+namespace Gp_project.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Supply_Material
     {
+        [Required(ErrorMessage ="you have to enter the material Name")]
+        [Display(Name = "Material  Name")]
         public int MaterialID { get; set; }
         public int SupplierID { get; set; }
+        [Required(ErrorMessage = "you have to enter the material Price")]
+        [Display(Name = "Material Price")]
         public double Price { get; set; }
+        [Required(ErrorMessage = "you have to enter the material Amount")]
+        [Display(Name = "Material  Amount")]
         public double amount { get; set; }
+        public int ID { get; set; }
     
         public virtual Material Material { get; set; }
         public virtual Supplier Supplier { get; set; }
