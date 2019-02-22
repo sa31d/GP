@@ -1,5 +1,5 @@
 using PrintNow.Models;
-using PrintNow.Models.ViewModel
+using PrintNow.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,7 @@ namespace PrintNow.Controllers
         [HttpGet]
         public ActionResult AddMaterials()
         {
-            var materials = db.Material.ToList();
+            var materials = db.Materials.ToList();
             SuppliedMaterials supm = new SuppliedMaterials
             {
 
@@ -90,7 +90,7 @@ namespace PrintNow.Controllers
         public ActionResult Edit(int id)
         {
             var material = db.Supply_Material.Single(x => x.ID == id);
-            var materials = db.Material.ToList();
+            var materials = db.Materials.ToList();
             SuppliedMaterials supm = new SuppliedMaterials
             {
 
@@ -104,7 +104,7 @@ namespace PrintNow.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var materials = db.Material.ToList();
+                var materials = db.Materials.ToList();
                 supm.materials = materials;
                 return View("Edit", supm);
             }
