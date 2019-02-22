@@ -12,7 +12,7 @@ namespace PrintNow.Controllers
     {
         // GET: Supplier
 
-        PrintnowEntities db = new PrintnowEntities();
+        PrintnowEntities2  db = new PrintnowEntities2 ();
 
         // GET: Supplier
 
