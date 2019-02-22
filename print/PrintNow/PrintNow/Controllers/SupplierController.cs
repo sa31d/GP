@@ -1,18 +1,18 @@
-﻿using Gp_project.Models;
-using Gp_project.ViewModels;
+using PrintNow.Models;
+using PrintNow.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Gp_project.Controllers
+namespace PrintNow.Controllers
 {
     public class SupplierController : Controller
     {
         // GET: Supplier
 
-        PrintnowEntities db = new PrintnowEntities();
+        PrintnowEntities2  db = new PrintnowEntities2 ();
 
         // GET: Supplier
 
@@ -38,7 +38,7 @@ namespace Gp_project.Controllers
         [HttpGet]
         public ActionResult AddMaterials()
         {
-            var materials = db.Material.ToList();
+            var materials = db.Materials.ToList();
             SuppliedMaterials supm = new SuppliedMaterials
             {
 
@@ -90,7 +90,7 @@ namespace Gp_project.Controllers
         public ActionResult Edit(int id)
         {
             var material = db.Supply_Material.Single(x => x.ID == id);
-            var materials = db.Material.ToList();
+            var materials = db.Materials.ToList();
             SuppliedMaterials supm = new SuppliedMaterials
             {
 
@@ -104,7 +104,7 @@ namespace Gp_project.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var materials = db.Material.ToList();
+                var materials = db.Materials.ToList();
                 supm.materials = materials;
                 return View("Edit", supm);
             }
