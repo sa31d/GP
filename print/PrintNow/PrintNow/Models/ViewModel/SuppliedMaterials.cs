@@ -6,9 +6,10 @@ using System.Web;
 
 namespace Gp_project.ViewModels
 {
-    public class requestMaterial
+    public class SuppliedMaterials
     {
+
+        public Supply_Material supply_material { get; set; }
         public IEnumerable<Material> materials { get; set; }
-        public PrintingCompany_Request_Material request { get; set; }
     }
 }
