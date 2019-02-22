@@ -1,12 +1,12 @@
-﻿using Gp_project.Models;
-using Gp_project.ViewModels;
+using PrintNow.Models;
+using PrintNow.Models.ViewModel
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Gp_project.Controllers
+namespace PrintNow.Controllers
 {
     public class SupplierController : Controller
     {
