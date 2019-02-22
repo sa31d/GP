@@ -1,0 +1,86 @@
+﻿@model Gp_project.ViewModels.SuppliedMaterials
+@{
+    ViewBag.Title = "Add Materials";
+}
+
+@if (Session["email"] != null)
+{
+
+    <h2>Add Materials</h2>
+
+
+
+
+    <div class="container">
+        <form id="add">
+            <div class="form-group">
+                @Html.LabelFor(x => x.supply_material.MaterialID)
+                @Html.DropDownListFor(x => x.supply_material.MaterialID, new SelectList(Model.materials, "materialID", "materialName"), "Select Material", new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.supply_material.MaterialID)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.supply_material.Price)
+                @Html.TextBoxFor(x => x.supply_material.Price, new { @class = "form-control", type = "number" })
+                @Html.ValidationMessageFor(x => x.supply_material.Price)
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.supply_material.amount)
+                @Html.TextBoxFor(x => x.supply_material.amount, new { @class = "form-control", type = "number" })
+                @Html.ValidationMessageFor(x => x.supply_material.amount)
+
+            </div>
+            <button type="button" class="btn btn-danger" id="save">Add</button>
+
+        </form>
+    </div>
+}
+else
+{
+    <h1>No Access You Should Login First !</h1>
+}
+
+    @section Scripts{
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script>
+
+            $(document).ready(function () {
+
+                $("#save").click(function () {
+                    if ($("#add").valid()) {
+                        mydata = $("#add").serialize();
+
+                        $.ajax({
+
+                            type: "Post",
+                            url: "/Supplier/AddMaterials",
+                            data: mydata,
+                            success: function (response) {
+                                if (response.result == 1) {
+                                    swal("Material is Inserted!", "You have Successfully Added The Material !", "success");
+                                }
+                                else if (response.result == 2) {
+                                    swal("Material is not Inserted!", "This Material already Exist you can Edit it !", "error");
+                                }
+                                else {
+                                    swal("Material is not Inserted!", "You have not Successfully Added The Material !", "error");
+                                }
+                            }
+
+
+                        })
+                    }
+                })
+
+
+            })
+
+        </script>
+
+    }

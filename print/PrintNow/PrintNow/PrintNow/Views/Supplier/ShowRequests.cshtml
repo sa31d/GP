@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Gp_project.Models.PrintingCompany_Request_Material>
+@{
+    ViewBag.Title = "ShowRequests";
+}
+
+<h2>Material Requests</h2>
+
+<div>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+            @Html.Label("Company")
+            </th>
+            <th>
+                @Html.Label("Material")
+            </th>
+           <th>
+            @Html.Label("Amount")
+            </th>
+            <th>
+                @Html.Label("Order Date")
+            </th>
+            
+
+            <th>Actions</th>
+
+          
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Printing_Company.companyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Material.materialName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderDate)
+                </td>
+
+                
+
+
+                <td>
+                    @Html.ActionLink("Response", "Response", new { id = item.Material.materialID }, new { @class = "btn btn-danger" }) 
+                   
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+</div>
