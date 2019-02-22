@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gp_project.Models
+namespace PrintNow.Models
 {
     using System;
     using System.Collections.Generic;
