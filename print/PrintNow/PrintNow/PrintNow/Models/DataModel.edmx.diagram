@@ -4,21 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="052f6bb81b9a44d49f8976aed66eead3" Name="Diagram1">
-        <EntityTypeShape EntityType="PrintnowModel.Customer" Width="1.5" PointX="1.5" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintnowModel.Customer_Request_Shipping" Width="1.5" PointX="3.75" PointY="18.125" IsExpanded="true" />
+      <Diagram DiagramId="9dd506e6f1db40a3b407b571d08bc933" Name="Diagram1">
+        <EntityTypeShape EntityType="PrintnowModel.Customer" Width="1.5" PointX="1.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintnowModel.Customer_Request_Shipping" Width="1.5" PointX="3.75" PointY="20.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintnowModel.Material" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintnowModel.Order" Width="1.5" PointX="3.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintnowModel.Printing_Company" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintnowModel.Order" Width="1.5" PointX="3.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintnowModel.Printing_Company" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintnowModel.Printing_Request_Shipping" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintnowModel.PrintingCompany_Request_Material" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintnowModel.PrintingCompany_Response" Width="1.5" PointX="6" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintnowModel.Product" Width="1.5" PointX="1.5" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintnowModel.Product_Has_Material" Width="1.5" PointX="6.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintnowModel.Shipping_Company" Width="1.5" PointX="0.75" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintnowModel.Supplier" Width="1.5" PointX="0.75" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintnowModel.Product" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintnowModel.Product_Has_Material" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintnowModel.Shipping_Company" Width="1.5" PointX="0.75" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrintnowModel.Supplier" Width="1.5" PointX="0.75" PointY="25.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PrintnowModel.Supply_Material" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PrintnowModel.sysdiagram" Width="1.5" PointX="5.75" PointY="3.125" IsExpanded="true" />
         <AssociationConnector Association="PrintnowModel.FK_Customer_Order" ManuallyRouted="false" />
         <AssociationConnector Association="PrintnowModel.FK_Customer_ShippingRequest" ManuallyRouted="false" />
         <AssociationConnector Association="PrintnowModel.FK_Shipping_ShippingRequest" ManuallyRouted="false" />
@@ -27,6 +26,7 @@
         <AssociationConnector Association="PrintnowModel.FK_Material_SupplyMaterial" ManuallyRouted="false" />
         <AssociationConnector Association="PrintnowModel.FK_Order_OrderResponse" ManuallyRouted="false" />
         <AssociationConnector Association="PrintnowModel.FK_Product_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="PrintnowModel.FK_Printing_Company_ProductMaterial" ManuallyRouted="false" />
         <AssociationConnector Association="PrintnowModel.FK_Printing_OrderResponse" ManuallyRouted="false" />
         <AssociationConnector Association="PrintnowModel.FK_Printing_PrintingMaterial" ManuallyRouted="false" />
         <AssociationConnector Association="PrintnowModel.FK_Printing_ShippingRequest" ManuallyRouted="false" />

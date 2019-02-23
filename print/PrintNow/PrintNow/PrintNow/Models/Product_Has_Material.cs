@@ -16,10 +16,12 @@ namespace PrintNow.Models
     {
         public int materialID { get; set; }
         public int productID { get; set; }
+        public int printingCompanyID { get; set; }
         public double price { get; set; }
         public int amount { get; set; }
     
         public virtual Material Material { get; set; }
+        public virtual Printing_Company Printing_Company { get; set; }
         public virtual Product Product { get; set; }
     }
 }

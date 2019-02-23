@@ -38,6 +38,5 @@ namespace PrintNow.Models
         public virtual DbSet<Shipping_Company> Shipping_Company { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Supply_Material> Supply_Material { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

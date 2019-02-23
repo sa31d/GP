@@ -25,7 +25,6 @@ namespace PrintNow.Models
         public System.DateTime orderDate { get; set; }
         public int quantity { get; set; }
         public string imagePath { get; set; }
-        public HttpPostedFileBase imageFile { get; set; }
         public string note { get; set; }
         public string printingSize { get; set; }
         public int custID { get; set; }
@@ -36,7 +35,8 @@ namespace PrintNow.Models
         public Nullable<int> NumberPages { get; set; }
         public string CollectionPapers { get; set; }
         public string Cover { get; set; }
-    
+
+        public HttpPostedFileBase imageFile { get; set; }
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PrintingCompany_Response> PrintingCompany_Response { get; set; }

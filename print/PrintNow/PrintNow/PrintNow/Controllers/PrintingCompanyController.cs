@@ -1,5 +1,6 @@
 ﻿
-﻿using PrintNow.Models;
+using Microsoft.AspNet.SignalR;
+using PrintNow.Models;
 using PrintNow.Models.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace PrintNow.Controllers
     public class PrintingCompanyController : Controller
     {
         private PrintnowEntities2 db = new PrintnowEntities2();
-
+      
         // GET: PrintingCompany
         public ActionResult Index()
         {
@@ -23,8 +24,10 @@ namespace PrintNow.Controllers
         public ActionResult getRequests()
         {
             var requests = db.Orders.ToList();
+            requests = requests.OrderByDescending(x => x.Customer.rate).ToList();
             return View(requests);
         }
+
         [HttpGet]
         public ActionResult response(int id)
         {
@@ -56,7 +59,7 @@ namespace PrintNow.Controllers
             requestMaterial reqMaterial = new requestMaterial
             {
                 materials = materials,
-                request = new PrintingCompany_Request_Material { printingID = 1 }
+                request = new PrintingCompany_Request_Material { printingID = Convert.ToInt32(Session["printingID"]) }
             };
             return View(reqMaterial);
         }
@@ -120,7 +123,7 @@ namespace PrintNow.Controllers
         }
         public ActionResult requestShipping(int shippingID)
         {
-            Printing_Request_Shipping request = new Printing_Request_Shipping { shippingID = shippingID,printingID = 1};
+            Printing_Request_Shipping request = new Printing_Request_Shipping { shippingID = shippingID,printingID = Convert.ToInt32(Session["printingID"])};
             return View(request);
         }
         [HttpPost]
@@ -133,6 +136,11 @@ namespace PrintNow.Controllers
                 return RedirectToAction("index");
             }
             return View(request);
+        }
+        public ActionResult Chat()
+        {
+
+            return View();
         }
 
     }

@@ -46,17 +46,24 @@
                         $("#shippingTable").show();
                         $("#shippingTable tbody").empty();
                         $.each(response, function (index, response) {
-                            alert(response.companyName + "" + response.address + "  " + response.email + response.insidePricePkg);
-                            $("#shippingTable tbody").append("<tr><td>" + response.companyName + "</td><td>" + response.email + "</td><td>" + response.phone + "</td><td>" + response.address + " " + response.city + "</td><td>" + response.insidePricePkg + "</td><td>" + response.outsidePricePkg + "</td><td>" + response.extraPricePkg + "</td><td>" + response.rate + "</td><td><button id='requestBtn' value='" + response.shippingID + "' class='btn btn-success' type='button'>Send Request</button></td></tr>");
+                            $("#shippingTable tbody").append("<tr><td>" + response.companyName + "</td><td>" + response.email + "</td><td>" + response.phone + "</td><td>" + response.address + " " + response.city + "</td><td>" + response.insidePricePkg + "</td><td>" + response.outsidePricePkg + "</td><td>" + response.extraPricePkg + "</td><td>" + response.rate + "</td><td> <a href='/PrintingCompany/requestShipping?shippingID=" + response.shippingID + "' class='btn btn-success'> Send a request </a> </td></tr>");
                         })
+                        $("#requestBtn").click(function () {
+                            id = $(this).val();
+                            $.ajax({
+                                type: "get",
+                                url: "/PrintingCompany/requestShipping?shippingID=" + id,
+                                success: function () {
 
+                                }
+                            
+                            })
+                        })
                     }
                 })
 
             })
-            $("#requestBtn").click(function () {
-                alert("1");
-            })
+
         })
     </script>
 }

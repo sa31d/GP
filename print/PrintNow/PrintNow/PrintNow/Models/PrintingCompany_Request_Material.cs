@@ -17,7 +17,7 @@ namespace PrintNow.Models
         public int printingID { get; set; }
         public int MaterialID { get; set; }
         public Nullable<int> amount { get; set; }
-        public Nullable<double> price { get; set; }
+        public Nullable<System.DateTime> orderDate { get; set; }
     
         public virtual Material Material { get; set; }
         public virtual Printing_Company Printing_Company { get; set; }

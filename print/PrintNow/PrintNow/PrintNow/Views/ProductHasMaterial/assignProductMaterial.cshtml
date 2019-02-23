@@ -1,0 +1,124 @@
+﻿@model PrintNow.Models.ViewModel.productMaterial
+
+@{
+    ViewBag.Title = "assignProductMaterial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>assignProductMaterial</h2>
+
+<form id="addProdMaterial">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model=>model.prodMaterial.printingCompanyID)
+    <div class="form-horizontal">
+        <h4>productMaterial</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.products, "Products", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.prodMaterial.productID, new SelectList(Model.products, "productID", "productType"), "Select product", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.prodMaterial.productID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.materials, "Materials", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.prodMaterial.materialID, new SelectList(Model.materials, "materialID", "materialName"), "Select Material", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.prodMaterial.productID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.prodMaterial.amount, "Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.prodMaterial.amount, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                @Html.ValidationMessageFor(model => model.prodMaterial.productID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.prodMaterial.price, "Price", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.prodMaterial.price,new { htmlAttributes = new { @class = "form-control",type="number" } })
+                @Html.ValidationMessageFor(model => model.prodMaterial.productID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <button type="button" id="addMaterialBtn" class="disabled btn btn-success form-control">Add material</button>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-2">
+                <button type="button" id="confirm" class="btn btn-success">Confirm</button>
+            </div>
+            <div class="col-md-5">
+                <button type="button" id="cansel" class="btn btn-primary">Cansel</button>
+            </div>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Material Name</th>
+            <th>Price</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $("#prodMaterial_productID").change(function () {
+            $("#addMaterialBtn").removeClass("disabled");
+            
+        })
+        $("#addMaterialBtn").click(function () {
+            myData = $("#addProdMaterial").serialize();
+            $.ajax({
+                type: "post",
+                url: "/ProductHasMaterial/assignProductMaterial",
+                data: myData,
+                success: function (response) {
+                    if (response.result == 1)
+                    {
+                        $("#prodMaterial_productID").addClass("disabled");
+                        $("#prodMaterial_productID").hide();
+                        $("tbody").append("<tr><td>" + $("#prodMaterial_productID").find(":selected").text() + "</td><td>" + $("#prodMaterial_materialID").find(":selected").text()+"</td><td>" + $("#prodMaterial_price").val() + "</td><td>" + $("#prodMaterial_amount").val() + "</td></tr>");
+                    }
+                }
+            })
+        })
+        $("#confirm").click(function () {
+                window.location.href = "@Url.Action("index","PrintingCompany")";          
+           
+        })
+        $("#cansel").click(function () {
+            $("tbody").empty();
+            $("#prodMaterial_productID").removeClass("disabled");
+            $("#prodMaterial_productID").show();
+            $.ajax({
+                type: "post",
+                url: "/ProductHasMaterial/remove?printingID=" +@Model.prodMaterial.printingCompanyID+ "&productID=" + $("#prodMaterial_productID").val(),
+                success: function () { }
+
+            })
+        })
+    })
+    </script>
+}

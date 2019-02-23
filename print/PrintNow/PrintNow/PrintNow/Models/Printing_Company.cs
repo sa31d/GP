@@ -17,6 +17,7 @@ namespace PrintNow.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Printing_Company()
         {
+            this.Product_Has_Material = new HashSet<Product_Has_Material>();
             this.PrintingCompany_Response = new HashSet<PrintingCompany_Response>();
             this.PrintingCompany_Request_Material = new HashSet<PrintingCompany_Request_Material>();
             this.Printing_Request_Shipping = new HashSet<Printing_Request_Shipping>();
@@ -33,6 +34,8 @@ namespace PrintNow.Models
         public double rate { get; set; }
         public int block { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product_Has_Material> Product_Has_Material { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PrintingCompany_Response> PrintingCompany_Response { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

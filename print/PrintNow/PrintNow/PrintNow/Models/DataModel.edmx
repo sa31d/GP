@@ -92,7 +92,7 @@
           <Property Name="printingID" Type="int" Nullable="false" />
           <Property Name="MaterialID" Type="int" Nullable="false" />
           <Property Name="amount" Type="int" />
-          <Property Name="price" Type="float" />
+          <Property Name="orderDate" Type="datetime" />
         </EntityType>
         <EntityType Name="PrintingCompany_Response">
           <Key>
@@ -116,9 +116,11 @@
           <Key>
             <PropertyRef Name="materialID" />
             <PropertyRef Name="productID" />
+            <PropertyRef Name="printingCompanyID" />
           </Key>
           <Property Name="materialID" Type="int" Nullable="false" />
           <Property Name="productID" Type="int" Nullable="false" />
+          <Property Name="printingCompanyID" Type="int" Nullable="false" />
           <Property Name="price" Type="float" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
         </EntityType>
@@ -163,16 +165,6 @@
           <Property Name="SupplierID" Type="int" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="amount" Type="float" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Customer_Order">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -243,6 +235,18 @@
             </Principal>
             <Dependent Role="PrintingCompany_Response">
               <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Printing_Company_ProductMaterial">
+          <End Role="Printing_Company" Type="Self.Printing_Company" Multiplicity="1" />
+          <End Role="Product_Has_Material" Type="Self.Product_Has_Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Printing_Company">
+              <PropertyRef Name="printingID" />
+            </Principal>
+            <Dependent Role="Product_Has_Material">
+              <PropertyRef Name="printingCompanyID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -356,7 +360,6 @@
           <EntitySet Name="Shipping_Company" EntityType="Self.Shipping_Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supply_Material" EntityType="Self.Supply_Material" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Customer_Order" Association="Self.FK_Customer_Order">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Orders" EntitySet="Orders" />
@@ -380,6 +383,10 @@
           <AssociationSet Name="FK_Order_OrderResponse" Association="Self.FK_Order_OrderResponse">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="PrintingCompany_Response" EntitySet="PrintingCompany_Response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Printing_Company_ProductMaterial" Association="Self.FK_Printing_Company_ProductMaterial">
+            <End Role="Printing_Company" EntitySet="Printing_Company" />
+            <End Role="Product_Has_Material" EntitySet="Product_Has_Material" />
           </AssociationSet>
           <AssociationSet Name="FK_Printing_OrderResponse" Association="Self.FK_Printing_OrderResponse">
             <End Role="Printing_Company" EntitySet="Printing_Company" />
@@ -496,6 +503,7 @@
           <Property Name="image" Type="Binary" MaxLength="1000" FixedLength="false" />
           <Property Name="rate" Type="Double" Nullable="false" />
           <Property Name="block" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product_Has_Material" Relationship="Self.FK_Printing_Company_ProductMaterial" FromRole="Printing_Company" ToRole="Product_Has_Material" />
           <NavigationProperty Name="PrintingCompany_Response" Relationship="Self.FK_Printing_OrderResponse" FromRole="Printing_Company" ToRole="PrintingCompany_Response" />
           <NavigationProperty Name="PrintingCompany_Request_Material" Relationship="Self.FK_Printing_PrintingMaterial" FromRole="Printing_Company" ToRole="PrintingCompany_Request_Material" />
           <NavigationProperty Name="Printing_Request_Shipping" Relationship="Self.FK_Printing_ShippingRequest" FromRole="Printing_Company" ToRole="Printing_Request_Shipping" />
@@ -521,7 +529,7 @@
           <Property Name="printingID" Type="Int32" Nullable="false" />
           <Property Name="MaterialID" Type="Int32" Nullable="false" />
           <Property Name="amount" Type="Int32" />
-          <Property Name="price" Type="Double" />
+          <Property Name="orderDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Material" Relationship="Self.FK_Material_PrintingMaterial" FromRole="PrintingCompany_Request_Material" ToRole="Material" />
           <NavigationProperty Name="Printing_Company" Relationship="Self.FK_Printing_PrintingMaterial" FromRole="PrintingCompany_Request_Material" ToRole="Printing_Company" />
         </EntityType>
@@ -551,12 +559,15 @@
           <Key>
             <PropertyRef Name="materialID" />
             <PropertyRef Name="productID" />
+            <PropertyRef Name="printingCompanyID" />
           </Key>
           <Property Name="materialID" Type="Int32" Nullable="false" />
           <Property Name="productID" Type="Int32" Nullable="false" />
+          <Property Name="printingCompanyID" Type="Int32" Nullable="false" />
           <Property Name="price" Type="Double" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Material" Relationship="Self.FK_Material_ProductMaterial" FromRole="Product_Has_Material" ToRole="Material" />
+          <NavigationProperty Name="Printing_Company" Relationship="Self.FK_Printing_Company_ProductMaterial" FromRole="Product_Has_Material" ToRole="Printing_Company" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_ProductMaterial" FromRole="Product_Has_Material" ToRole="Product" />
         </EntityType>
         <EntityType Name="Shipping_Company">
@@ -605,16 +616,6 @@
           <Property Name="amount" Type="Double" Nullable="false" />
           <NavigationProperty Name="Material" Relationship="Self.FK_Material_SupplyMaterial" FromRole="Supply_Material" ToRole="Material" />
           <NavigationProperty Name="Supplier" Relationship="Self.FK_Supplier_SupplyMaterial" FromRole="Supply_Material" ToRole="Supplier" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_Customer_Order">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -712,6 +713,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Printing_Company_ProductMaterial">
+          <End Role="Printing_Company" Type="Self.Printing_Company" Multiplicity="1" />
+          <End Role="Product_Has_Material" Type="Self.Product_Has_Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Printing_Company">
+              <PropertyRef Name="printingID" />
+            </Principal>
+            <Dependent Role="Product_Has_Material">
+              <PropertyRef Name="printingCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Printing_OrderResponse">
           <End Role="Printing_Company" Type="Self.Printing_Company" Multiplicity="1" />
           <End Role="PrintingCompany_Response" Type="Self.PrintingCompany_Response" Multiplicity="*" />
@@ -798,7 +811,6 @@
           <EntitySet Name="Shipping_Company" EntityType="Self.Shipping_Company" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
           <EntitySet Name="Supply_Material" EntityType="Self.Supply_Material" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <AssociationSet Name="FK_Customer_Order" Association="Self.FK_Customer_Order">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Orders" EntitySet="Orders" />
@@ -830,6 +842,10 @@
           <AssociationSet Name="FK_Product_Order" Association="Self.FK_Product_Order">
             <End Role="Product" EntitySet="Products" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Printing_Company_ProductMaterial" Association="Self.FK_Printing_Company_ProductMaterial">
+            <End Role="Printing_Company" EntitySet="Printing_Company" />
+            <End Role="Product_Has_Material" EntitySet="Product_Has_Material" />
           </AssociationSet>
           <AssociationSet Name="FK_Printing_OrderResponse" Association="Self.FK_Printing_OrderResponse">
             <End Role="Printing_Company" EntitySet="Printing_Company" />
@@ -951,7 +967,7 @@
                 <ScalarProperty Name="printingID" ColumnName="printingID" />
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -979,6 +995,7 @@
               <MappingFragment StoreEntitySet="Product_Has_Material">
                 <ScalarProperty Name="materialID" ColumnName="materialID" />
                 <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="printingCompanyID" ColumnName="printingCompanyID" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
               </MappingFragment>
@@ -1025,17 +1042,6 @@
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="PrintnowModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
